@@ -5,6 +5,7 @@ class SearchBar extends Component {
   onFormSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit(this.state.term);
+    this.setState({term:""})
   };
 
   render() {
@@ -15,10 +16,11 @@ class SearchBar extends Component {
             <label>Image Search</label>
             <input
               type="text"
-              value={this.state.value}
+              value={this.state.term}
               onChange={(e) => {
                 this.setState({term: e.target.value});
               }}
+              placeholder="Type to Search"
             />
           </div>
         </form>
