@@ -3,7 +3,7 @@ import Accordian from "./components/accordian";
 import Search from "./components/search";
 import Dropdown from "./components/dropdown";
 import Translate from "./components/translate";
-import Route from "./components/Route";
+import {Route,Routes} from 'react-router-dom';
 import Header from "./components/header";
 
 
@@ -22,37 +22,26 @@ const options = [
 const App = () => {
   const [selection, setSelection] = useState(options[0]);
   return (
-    <div>
-      
+    <>
       <Header />
-      <Route path="/">
-        <Accordian items={items} />
-      </Route>
-      <Route path="/list">
-        <Search />
-      </Route>
-      <Route path="/dropdown">
-        <Dropdown
+      
+      
+      <Routes>
+      
+      <Route path="/" exact element={ <Accordian items={items} />} />
+      <Route path="/list" element={<Search/>}/>
+       
+      <Route path="/dropdown" element={<Dropdown
           selected={selection}
           onSelectedChange={setSelection}
           options={options}
           label="Select a Color"
-        />
-      </Route>
-      <Route path="/translate">
-        <Translate />
-      </Route>
-
-      {/* <Accordian items={items} /> */}
-      {/* <Search /> */}
-      {/* <Dropdown
-        selected={selection}
-        onSelectedChange={setSelection}
-        options={options}
-      /> */}
-      {/* <Translate /> */}
-      
-    </div>
+        />}/>
+        
+     
+      <Route path="/translate" element={<Translate/>}/>
+       </Routes>
+    </>
   );
 };
 
