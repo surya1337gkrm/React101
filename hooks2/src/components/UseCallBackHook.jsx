@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
+import { useEffect } from 'react/cjs/react.development';
 import List from './list';
 
 const UseCallBackHook = () => {
@@ -9,15 +10,22 @@ const UseCallBackHook = () => {
     return [number, number + 1, number + 2];
   }, [number]);
 
+  const theme = useMemo(() => {
+    return {
+      backgroundColor: dark ? '#333' : '#fff',
+      color: dark ? '#fff' : '#333',
+      display: 'flex',
+      alignItems: 'center',
+      flexDirection: 'column',
+    };
+  }, [dark]);
+
+  useEffect(() => {
+    console.log('Theme Changed');
+  }, [theme]);
+
   return (
-    <div
-      style={{
-        backgroundColor: dark ? '#333' : '#fff',
-        color: dark ? '#fff' : '#333',
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}>
+    <div style={theme}>
       <h1>UseCallBackHook Example</h1>
       <br />
       <input
