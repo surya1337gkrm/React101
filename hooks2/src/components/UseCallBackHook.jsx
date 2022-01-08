@@ -22,7 +22,12 @@ const UseCallBackHook = () => {
       <br />
       <input
         type='number'
-        onChange={(e) => setNumber(e.target.valueAsNumber)}
+        value={number}
+        onChange={(e) => {
+          if (e.target.valueAsNumber) {
+            setNumber(e.target.valueAsNumber);
+          }
+        }}
       />
       <br />
       <button onClick={() => setDark((prevState) => !prevState)}>
